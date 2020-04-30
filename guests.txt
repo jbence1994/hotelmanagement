@@ -1,0 +1,5 @@
+1;Bence;Juhász;13AE34RE;magyar;06302944280;juhasz.bence@jgypk.hu
+2;Máté;Deim;72AS92EX;magyar;06304568932;deim.mate@jgypk.hu
+3;Máté;Varga;14UJ46U8;magyar;06743452312;varga.mate@jgypk.hu
+4;Norbert;Jauch;E46GFD7O;magyar;06803442321;jauch.norbert@jgypk.hu
+5;Endre;Varga;63HXYYY5;magyar;06543552715;varga.endre@jgypk.hu

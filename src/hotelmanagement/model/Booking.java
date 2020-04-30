@@ -4,61 +4,88 @@ import java.time.LocalDate;
 
 public class Booking {
 
-    private int id;
-    private Guest guest;
-    private Room room;
-    private int numberOfGuests;
-    private LocalDate date;
-    private boolean paid;
+	private int id;
+	private Guest guest;
+	private Room room;
+	private int numberOfGuests;
+	private LocalDate arrivalDate;
+	private int numberOfNights;
+	private boolean paid;
 
-    public Booking(int id, Guest guest, Room room, int numberOfGuests, LocalDate date, boolean paid) {
-        this.id = id;
-        this.guest = guest;
-        this.room = room;
-        this.numberOfGuests = numberOfGuests;
-        this.date = date;
-        this.paid = paid;
-    }
+	public Booking(int id, Guest guest, Room room, int numberOfGuests, LocalDate arrivalDate, boolean paid) {
+		this.id = id;
+		this.guest = guest;
+		this.room = room;
+		this.numberOfGuests = numberOfGuests;
+		this.arrivalDate = arrivalDate;
+		this.paid = paid;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Room getRoom() {
-        return room;
-    }
+	public Guest getGuest() {
+		return guest;
+	}
 
-    public int getNumberOfGuests() {
-        return numberOfGuests;
-    }
+	public void setGuest(Guest guest) {
+		this.guest = guest;
+	}
 
-    public LocalDate getDate() {
-        return date;
-    }
+	public Room getRoom() {
+		return room;
+	}
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 
-    public boolean isPaid() {
-        return paid;
-    }
+	public int getNumberOfGuests() {
+		return numberOfGuests;
+	}
 
-    public void setPaid(boolean paid) {
-        this.paid = paid;
-    }
+	public void setNumberOfGuests(int numberOfGuests) {
+		this.numberOfGuests = numberOfGuests;
+	}
 
-    @Override
-    public String toString() {
-        return "Foglalás azonosítója: " + id + ". Vendég neve: "
-                + guest.getFullName() + ". Szobaszám: " + room.getNumber()
-                + ". Vendégek száma: " + numberOfGuests + " fő." + " Dátum: "
-                + date + ". Pénzügyi státusz: "
-                + (paid ? "fizetett" : "nem fizetett") + ".";
-    }
+	public LocalDate getArrivalDate() {
+		return arrivalDate;
+	}
+
+	public void setDate(LocalDate date) {
+		this.arrivalDate = date;
+	}
+
+	public LocalDate getDepartureDate() {
+		return arrivalDate.plusDays(numberOfNights);
+	}
+
+	public int getNumberOfNights() {
+		return numberOfNights;
+	}
+
+	public void setNumberOfNights(int numberOfNights) {
+		this.numberOfNights = numberOfNights;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	@Override
+	public String toString() {
+		return "Foglalás azonosítója: " + id + ". Vendég neve: " + guest.getFullName() + ". Szobaszám: "
+				+ room.getNumber() + ". Vendégek száma: " + numberOfGuests + " fő." + " Dátum: " + arrivalDate
+				+ ". Pénzügyi státusz: " + (paid ? "fizetett" : "nem fizetett") + ".";
+	}
 
 }

@@ -8,7 +8,6 @@ import hotelmanagement.service.*;
 public class App {
 
 	private static BaseAccommodation testAccommodation;
-	private static final String exitMessage = "Érvénytelen menüpont!";
 
 	public static void main(String[] args) {
 
@@ -20,9 +19,12 @@ public class App {
 			System.out.println("******* V I R T U A L *********");
 			System.out.println("*** R E C E P T I O N I S T ***");
 			System.out.println("*******************************");
+			System.out.println("Betöltés...");
+
+			Thread.sleep(3000);
 
 			while (true) {
-				System.out.println("Kérem válasszon menüpontot:\n");
+				System.out.println("\nKérem válasszon menüpontot:\n");
 				System.out.println(
 						"1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása\n4) Kilépés az alkalmazásból");
 
@@ -40,10 +42,12 @@ public class App {
 					showBookings();
 					break;
 				case 4:
+					System.out.println("Leállítás...");
+					Thread.sleep(3000);
 					System.exit(0);
 					break;
 				default:
-					System.out.println(exitMessage);
+					System.out.println("Érvénytelen menüpont!");
 					break;
 				}
 			}
@@ -112,7 +116,7 @@ public class App {
 	}
 
 	private static void showBookings() {
-		System.out.println("Foglalások listája: ");
+		System.out.println("\nFoglalások listája: ");
 		for (Booking booking : testAccommodation.getBookings()) {
 			System.out.println(booking);
 		}

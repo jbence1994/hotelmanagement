@@ -10,16 +10,13 @@ public class Booking {
 	private int numberOfGuests;
 	private LocalDate arrivalDate;
 	private int numberOfNights;
-	private boolean paid;
 
-	public Booking(Guest guest, Room room, int numberOfGuests, LocalDate arrivalDate, int numberOfNights,
-			boolean paid) {
+	public Booking(Guest guest, Room room, int numberOfGuests, LocalDate arrivalDate, int numberOfNights) {
 		this.guest = guest;
 		this.room = room;
 		this.numberOfGuests = numberOfGuests;
 		this.numberOfNights = numberOfNights;
 		this.arrivalDate = arrivalDate;
-		this.paid = paid;
 	}
 
 	public int getId() {
@@ -74,19 +71,10 @@ public class Booking {
 		this.numberOfNights = numberOfNights;
 	}
 
-	public boolean isPaid() {
-		return paid;
-	}
-
-	public void setPaid(boolean paid) {
-		this.paid = paid;
-	}
-
 	@Override
 	public String toString() {
 		return "Foglalás azonosítója: " + id + ". Vendég neve: " + guest.getFullName() + ". Szobaszám: "
-				+ room.getNumber() + ". Vendégek száma: " + numberOfGuests + " fő." + " Dátum: " + arrivalDate
-				+ ". Pénzügyi státusz: " + (paid ? "fizetett" : "nem fizetett") + ".";
+				+ room.getNumber() + ". Vendégek száma: " + numberOfGuests + " fő." + " Dátum: " + arrivalDate + ".";
 	}
 
 }

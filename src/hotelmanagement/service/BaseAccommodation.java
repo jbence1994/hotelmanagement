@@ -15,6 +15,8 @@ public abstract class BaseAccommodation {
 
 	protected abstract void splitBookingIntoDays(Booking booking);
 
+	public abstract Room getRoom(int number) throws Exception;
+
 	public abstract List<Room> getRooms();
 
 	public void addBooking(Booking booking) throws InvalidBookingException {

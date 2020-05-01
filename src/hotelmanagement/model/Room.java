@@ -13,7 +13,7 @@ public class Room {
 		this.name = name;
 		this.capacity = capacity;
 		this.price = price;
-		reserved = false;
+		this.reserved = false;
 	}
 
 	public int getNumber() {

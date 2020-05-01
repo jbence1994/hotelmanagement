@@ -19,9 +19,8 @@ class BaseAccommodationTest {
 			System.out.println("test_addBooking_has_enough_booking_added");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06202944280",
-					"juhasz.bence.zsolt@gmail.com");
-			Booking booking = new Booking(testGuest, testRoom, 2, LocalDate.of(2020, 05, 02), 2, false);
+			Guest testGuest = new Guest("Juhász", "Bence", "magyar");
+			Booking booking = new Booking(testGuest, testRoom, 2, LocalDate.of(2020, 05, 02), 2);
 
 			testAccommodation.addBooking(booking);
 
@@ -61,9 +60,8 @@ class BaseAccommodationTest {
 			System.out.println("test_getDepartureDate_is_correct");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06202944280",
-					"juhasz.bence.zsolt@gmail.com");
-			Booking booking = new Booking(testGuest, testRoom, 2, LocalDate.of(2020, 05, 02), 2, false);
+			Guest testGuest = new Guest("Juhász", "Bence", "magyar");
+			Booking booking = new Booking(testGuest, testRoom, 2, LocalDate.of(2020, 05, 02), 2);
 
 			LocalDate expectedDepartureDate = LocalDate.of(2020, 05, 04);
 			LocalDate actualDepartureDate = booking.getDepartureDate();
@@ -87,15 +85,14 @@ class BaseAccommodationTest {
 
 			Room testRoom = testAccommodation.getRooms().get(0);
 
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Guest testGuest2 = new Guest(1, "Deim", "Máté", "XYZ789", "magyar", "06502913280", "deim.mate@teszt.hu");
+			Guest testGuest2 = new Guest("Deim", "Máté", "magyar");
 
-			Booking booking1 = new Booking(testGuest1, testRoom, 2, LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking1 = new Booking(testGuest1, testRoom, 2, LocalDate.of(2020, 05, 02), 3);
 			testAccommodation.addBooking(booking1);
 
-			Booking booking2 = new Booking(testGuest2, testRoom, 2, LocalDate.of(2020, 05, 03), 1, false);
+			Booking booking2 = new Booking(testGuest2, testRoom, 2, LocalDate.of(2020, 05, 03), 1);
 			testAccommodation.addBooking(booking2);
 
 			fail("Átmegy a teszt túlfoglalás esetén!");
@@ -116,10 +113,9 @@ class BaseAccommodationTest {
 					"test_are_there_enough_capacity_in_case_number_of_guests_higher_than_room_capacity_should_throw_exception");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Booking booking = new Booking(testGuest1, testRoom, 10, LocalDate.of(2020, 06, 01), 1, false);
+			Booking booking = new Booking(testGuest1, testRoom, 10, LocalDate.of(2020, 06, 01), 1);
 			testAccommodation.addBooking(booking);
 
 			fail("Nem dob kivételt a függvény, ha nagyobb vendégszámmal foglalok, mint a szoba kapacitása.");
@@ -141,15 +137,14 @@ class BaseAccommodationTest {
 
 			Room testRoom = testAccommodation.getRooms().get(0);
 
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Booking booking1 = new Booking(testGuest1, testRoom, 2, LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking1 = new Booking(testGuest1, testRoom, 2, LocalDate.of(2020, 05, 02), 3);
 			testAccommodation.addBooking(booking1);
 
-			Guest testGuest2 = new Guest(1, "Deim", "Máté", "XYZ789", "magyar", "06502913280", "deim.mate@teszt.hu");
+			Guest testGuest2 = new Guest("Deim", "Máté", "magyar");
 
-			Booking booking2 = new Booking(testGuest2, testRoom, 2, LocalDate.of(2020, 06, 02), 1, false);
+			Booking booking2 = new Booking(testGuest2, testRoom, 2, LocalDate.of(2020, 06, 02), 1);
 			testAccommodation.addBooking(booking2);
 		} catch (Exception e) {
 			System.out.println("Dobott kivételt: " + e.getMessage());
@@ -168,10 +163,9 @@ class BaseAccommodationTest {
 			System.out.println("test_delete_succefully_a_booking_with_specified_id");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1, false);
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1);
 			testAccommodation.addBooking(booking);
 
 			testAccommodation.deleteBooking(1);
@@ -192,10 +186,9 @@ class BaseAccommodationTest {
 			System.out.println("test_delete_booking_with_specified_id_not_exists_should_throw_exception");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1, false);
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1);
 			testAccommodation.addBooking(booking);
 
 			testAccommodation.deleteBooking(2);
@@ -215,10 +208,9 @@ class BaseAccommodationTest {
 			System.out.println("test_delete_bookings_with_specified_id_not_exists_should_throw_exception");
 			BaseAccommodation testAccommodation = new Accommodation();
 			Room testRoom = testAccommodation.getRooms().get(0);
-			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
-					"juhasz.bence@teszt.hu");
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
 
-			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 3, false);
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 3);
 			testAccommodation.addBooking(booking);
 
 			testAccommodation.deleteBooking(1);

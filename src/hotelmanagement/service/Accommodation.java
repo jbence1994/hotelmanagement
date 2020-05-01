@@ -70,10 +70,9 @@ public final class Accommodation extends BaseAccommodation {
 		Room room = booking.getRoom();
 		int numberOfGuests = booking.getNumberOfGuests();
 		int numberOfNights = booking.getNumberOfNights();
-		boolean paid = booking.isPaid();
 
 		while (arrivalDate.isBefore(booking.getDepartureDate())) {
-			Booking splittedBooking = new Booking(guest, room, numberOfGuests, arrivalDate, numberOfNights, paid);
+			Booking splittedBooking = new Booking(guest, room, numberOfGuests, arrivalDate, numberOfNights);
 			splittedBooking.setId(id);
 			splittedBooking.getRoom().setReserved(true);
 
@@ -172,6 +171,16 @@ public final class Accommodation extends BaseAccommodation {
 	@Override
 	public List<Room> getRooms() {
 		return rooms;
+	}
+
+	@Override
+	public Room getRoom(int number) throws Exception {
+		for (Room room : rooms) {
+			if (room.getNumber() == number) {
+				return room;
+			}
+		}
+		throw new Exception("Nincs ilyen szobaszám!");
 	}
 
 }

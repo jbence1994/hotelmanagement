@@ -34,7 +34,7 @@ class BaseAccommodationTest {
 		}
 
 		System.out.println("Sikeresen hozzáadja a foglalást napra lebontva új objektumokként.");
-		System.out.println("");
+		System.out.println();
 	}
 
 	@Test

@@ -8,7 +8,7 @@ import hotelmanagement.service.*;
 public class App {
 
 	private static BaseAccommodation testAccommodation;
-	private static final String exitMessage = "Érvénytelen menüpont. Az alkalmazás leáll...";
+	private static final String exitMessage = "Érvénytelen menüpont!";
 
 	public static void main(String[] args) {
 
@@ -26,7 +26,7 @@ public class App {
 				System.out.println(
 						"1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása\n4) Kilépés az alkalmazásból");
 
-				System.out.print("Adja meg a menüpont számát: ");
+				System.out.print("\nAdja meg a menüpont számát: ");
 				int menu = input.nextInt();
 
 				switch (menu) {
@@ -49,7 +49,6 @@ public class App {
 			}
 
 		} catch (Exception e) {
-			System.out.println(exitMessage);
 			return;
 		}
 	}

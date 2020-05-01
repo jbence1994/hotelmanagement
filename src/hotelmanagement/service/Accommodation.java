@@ -73,17 +73,18 @@ public final class Accommodation extends BaseAccommodation {
 		boolean paid = booking.isPaid();
 
 		while (arrivalDate.isBefore(booking.getDepartureDate())) {
-			bookings.add(new Booking(id, guest, room, numberOfGuests, arrivalDate, numberOfNights, paid));
-			booking.getRoom().setReserved(true);
+			Booking splittedBooking = new Booking(guest, room, numberOfGuests, arrivalDate, numberOfNights, paid);
+			splittedBooking.setId(id);
+			splittedBooking.getRoom().setReserved(true);
+
+			bookings.add(splittedBooking);
+
 			arrivalDate = arrivalDate.plusDays(1);
 		}
 	}
 
 	@Override
 	protected void validate(Booking booking) throws InvalidBookingException {
-		if (!hasFreeRooms(booking.getArrivalDate())) {
-			throw new InvalidBookingException("Teltház miatt nem lehetséges a foglalás!");
-		}
 
 		if (isRoomReserved(booking.getRoom().getNumber(), booking.getArrivalDate())) {
 			throw new InvalidBookingException("A kiválasztott szoba sajnos foglalt!");
@@ -111,16 +112,6 @@ public final class Accommodation extends BaseAccommodation {
 		}
 
 		return false;
-	}
-
-	private boolean hasFreeRooms(LocalDate arrivalDate) {
-		boolean hasFreeRooms = false;
-
-		if (getNumberOfBookings(arrivalDate) != rooms.size()) {
-			hasFreeRooms = true;
-		}
-
-		return hasFreeRooms;
 	}
 
 	private int getNumberOfBookings(LocalDate arrivalDate) {

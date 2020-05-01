@@ -24,8 +24,7 @@ public class App {
 			Thread.sleep(2000);
 
 			System.out.println("Kérem válasszon menüpontot:\n");
-			System.out.println(
-					"1) Foglalás rögzítése\n2) Foglalás módosítása" + "\n3) Foglalás törlése\n4) Foglalások listázása");
+			System.out.println("1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása");
 
 			System.out.print("Adja meg a menüpont számát: ");
 			int menu = input.nextInt();
@@ -35,12 +34,9 @@ public class App {
 				addBooking();
 				break;
 			case 2:
-				updateBooking();
-				break;
-			case 3:
 				deleteBooking();
 				break;
-			case 4:
+			case 3:
 				showBookings();
 				break;
 			default:
@@ -54,26 +50,16 @@ public class App {
 
 	private static void addBooking() {
 		System.out.println("Foglalás rögzítése: ");
-		System.out.println("A vendég törzsvendég?");
 
 		int id = input.nextInt();
 
+		
+		// Booking newBooking = new Booking();
+		
 		// testAccommodation.addBooking();
 
 		System.out.println(id + " azonosítójú foglalás sikeresen rögzítésre került!");
 
-	}
-
-	private static void updateBooking() {
-		try {
-			System.out.println("Kérem adja meg a törlendő foglalás azonosítóját!");
-			int id = input.nextInt();
-			Booking booking = testAccommodation.getBookingById(id);
-			testAccommodation.updateBooking(booking);
-			System.out.println(id + " azonosítójú foglalás sikeresen módosult!");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 
 	private static void deleteBooking() {
@@ -88,7 +74,7 @@ public class App {
 	}
 
 	private static void showBookings() {
-		System.out.println("Aktív foglalások: ");
+		System.out.println("Foglalások listája: ");
 		for (Booking booking : testAccommodation.getBookings()) {
 			System.out.println(booking);
 		}

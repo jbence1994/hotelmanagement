@@ -12,9 +12,8 @@ public class Booking {
 	private int numberOfNights;
 	private boolean paid;
 
-	public Booking(int id, Guest guest, Room room, int numberOfGuests, LocalDate arrivalDate, int numberOfNights,
+	public Booking(Guest guest, Room room, int numberOfGuests, LocalDate arrivalDate, int numberOfNights,
 			boolean paid) {
-		this.id = id;
 		this.guest = guest;
 		this.room = room;
 		this.numberOfGuests = numberOfGuests;

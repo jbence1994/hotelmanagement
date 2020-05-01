@@ -22,11 +22,6 @@ public abstract class BaseAccommodation {
 		splitBookingIntoDays(booking);
 	}
 
-	public void updateBooking(Booking booking) throws InvalidBookingException {
-		validate(booking);
-		splitBookingIntoDays(booking);
-	}
-
 	public abstract void deleteBooking(int id) throws Exception;
 
 	public abstract Booking getBookingById(int id) throws Exception;

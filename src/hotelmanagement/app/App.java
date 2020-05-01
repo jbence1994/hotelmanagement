@@ -20,10 +20,11 @@ public class App {
 			System.out.println("******* V I R T U A L *********");
 			System.out.println("*** R E C E P T I O N I S T ***");
 			System.out.println("*******************************");
-			
+
 			while (true) {
 				System.out.println("Kérem válasszon menüpontot:\n");
-				System.out.println("1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása");
+				System.out.println(
+						"1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása\n4) Kilépés az alkalmazásból");
 
 				System.out.print("Adja meg a menüpont számát: ");
 				int menu = input.nextInt();
@@ -37,6 +38,9 @@ public class App {
 					break;
 				case 3:
 					showBookings();
+					break;
+				case 4:
+					System.exit(0);
 					break;
 				default:
 					System.out.println(exitMessage);

@@ -65,18 +65,16 @@ public final class Accommodation extends BaseAccommodation {
 	@Override
 	protected void splitBookingIntoDays(Booking booking) {
 		LocalDate arrivalDate = booking.getArrivalDate();
+		int id = getNextBookingId();
+		Guest guest = booking.getGuest();
+		Room room = booking.getRoom();
+		int numberOfGuests = booking.getNumberOfGuests();
+		int numberOfNights = booking.getNumberOfNights();
+		boolean paid = booking.isPaid();
 
 		while (arrivalDate.isBefore(booking.getDepartureDate())) {
-
-			int id = booking.getId();
-			Guest guest = booking.getGuest();
-			Room room = booking.getRoom();
-			int numberOfGuests = booking.getNumberOfGuests();
-			int numberOfNights = booking.getNumberOfNights();
-			boolean paid = booking.isPaid();
-			booking.getRoom().setReserved(true);
-
 			bookings.add(new Booking(id, guest, room, numberOfGuests, arrivalDate, numberOfNights, paid));
+			booking.getRoom().setReserved(true);
 			arrivalDate = arrivalDate.plusDays(1);
 		}
 	}

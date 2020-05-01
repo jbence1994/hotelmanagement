@@ -172,25 +172,25 @@ class BaseAccommodationTest {
 					"juhasz.bence@teszt.hu");
 
 			Booking booking1 = new Booking(1, testGuest1, testAccommodation.getRooms().get(0), 3,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking2 = new Booking(1, testGuest1, testAccommodation.getRooms().get(1), 3,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking3 = new Booking(1, testGuest1, testAccommodation.getRooms().get(2), 3,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking4 = new Booking(1, testGuest1, testAccommodation.getRooms().get(3), 2,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking5 = new Booking(1, testGuest1, testAccommodation.getRooms().get(4), 2,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking6 = new Booking(1, testGuest1, testAccommodation.getRooms().get(5), 2,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking7 = new Booking(1, testGuest1, testAccommodation.getRooms().get(6), 4,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking8 = new Booking(1, testGuest1, testAccommodation.getRooms().get(7), 4,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking9 = new Booking(1, testGuest1, testAccommodation.getRooms().get(8), 5,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 			Booking booking10 = new Booking(1, testGuest1, testAccommodation.getRooms().get(9), 5,
-					LocalDate.of(2020, 05, 02), 3, false);
+					LocalDate.of(2020, 05, 02), 1, false);
 
 			testAccommodation.addBooking(booking1);
 			testAccommodation.addBooking(booking2);

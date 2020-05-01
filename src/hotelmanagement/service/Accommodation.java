@@ -153,30 +153,20 @@ public final class Accommodation extends BaseAccommodation {
 
 	@Override
 	public void deleteBooking(int id) throws Exception {
+
 		for (Booking booking : bookings) {
 			if (booking.getId() == id) {
-				bookings.remove(booking);
+				bookings.removeIf(x -> x.getId() == id);
 				return;
 			}
 		}
-		throw new Exception("Nincs foglalás az alábbi azonosítóval: " + id + ". Nem lehet törölni!");
-
+		throw new Exception("Nem található " + id + " azonosítóval foglalás. Nem lehet törölni!");
 	}
 
 	@Override
 	public String toString() {
 		return "A szálláshely neve: " + name + ", címe: " + zipCode + " " + city + " " + address + "."
 				+ "Elérhetőségek: " + phone + ", " + email;
-	}
-
-	@Override
-	public Booking getBookingById(int id) throws Exception {
-		for (Booking booking : bookings) {
-			if (booking.getId() == id) {
-				return booking;
-			}
-		}
-		throw new Exception("Nem található foglalás az alábbi azonosítóval: " + id);
 	}
 
 	@Override

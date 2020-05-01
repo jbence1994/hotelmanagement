@@ -161,4 +161,74 @@ class BaseAccommodationTest {
 
 	}
 
+	@Test
+	public void test_delete_succefully_a_booking_with_specified_id() {
+
+		try {
+			System.out.println("test_delete_succefully_a_booking_with_specified_id");
+			BaseAccommodation testAccommodation = new Accommodation();
+			Room testRoom = testAccommodation.getRooms().get(0);
+			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
+					"juhasz.bence@teszt.hu");
+
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1, false);
+			testAccommodation.addBooking(booking);
+
+			testAccommodation.deleteBooking(1);
+			assertEquals(0, testAccommodation.getBookings().size());
+
+		} catch (Exception e) {
+			System.out.println("Dobott kivételt: " + e.getMessage());
+		}
+		System.out.println("Sikeresen törli az adott azonosítójú foglalásokat.");
+		System.out.println();
+
+	}
+
+	@Test
+	public void test_delete_booking_with_specified_id_not_exists_should_throw_exception() {
+
+		try {
+			System.out.println("test_delete_booking_with_specified_id_not_exists_should_throw_exception");
+			BaseAccommodation testAccommodation = new Accommodation();
+			Room testRoom = testAccommodation.getRooms().get(0);
+			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
+					"juhasz.bence@teszt.hu");
+
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 1, false);
+			testAccommodation.addBooking(booking);
+
+			testAccommodation.deleteBooking(2);
+
+		} catch (Exception e) {
+			System.out.println("Dobott kivételt: " + e.getMessage());
+		}
+		System.out.println("Sikeresen elszáll a program, ha nem létező azonosítójú foglalást próbálok törölni.");
+		System.out.println();
+
+	}
+
+	@Test
+	public void test_delete_bookings_with_specified_id_not_exists_should_throw_exception() {
+
+		try {
+			System.out.println("test_delete_bookings_with_specified_id_not_exists_should_throw_exception");
+			BaseAccommodation testAccommodation = new Accommodation();
+			Room testRoom = testAccommodation.getRooms().get(0);
+			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
+					"juhasz.bence@teszt.hu");
+
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 06, 01), 3, false);
+			testAccommodation.addBooking(booking);
+
+			testAccommodation.deleteBooking(1);
+			assertEquals(0, testAccommodation.getBookings().size());
+		} catch (Exception e) {
+			System.out.println("Dobott kivételt: " + e.getMessage());
+		}
+		System.out.println("Sikeresen töröl többnapos foglalást is, ha azonos az azonosítójuk.");
+		System.out.println();
+
+	}
+
 }

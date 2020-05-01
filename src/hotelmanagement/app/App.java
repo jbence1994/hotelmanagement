@@ -21,7 +21,6 @@ public class App {
 			System.out.println("******* V I R T U A L *********");
 			System.out.println("*** R E C E P T I O N I S T ***");
 			System.out.println("*******************************");
-			Thread.sleep(2000);
 
 			System.out.println("Kérem válasszon menüpontot:\n");
 			System.out.println("1) Foglalás rögzítése\n2) Foglalás törlése\n3) Foglalások listázása");
@@ -53,9 +52,8 @@ public class App {
 
 		int id = input.nextInt();
 
-		
 		// Booking newBooking = new Booking();
-		
+
 		// testAccommodation.addBooking();
 
 		System.out.println(id + " azonosítójú foglalás sikeresen rögzítésre került!");

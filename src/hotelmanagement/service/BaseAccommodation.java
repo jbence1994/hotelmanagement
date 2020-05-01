@@ -24,6 +24,4 @@ public abstract class BaseAccommodation {
 
 	public abstract void deleteBooking(int id) throws Exception;
 
-	public abstract Booking getBookingById(int id) throws Exception;
-
 }

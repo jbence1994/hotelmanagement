@@ -223,4 +223,26 @@ class BaseAccommodationTest {
 
 	}
 
+	@Test
+	public void test_booking_arrival_date_is_before_today() {
+
+		try {
+			System.out.println("test_booking_arrival_date_is_before_today");
+			BaseAccommodation testAccommodation = new Accommodation();
+			Room testRoom = testAccommodation.getRooms().get(0);
+			Guest testGuest1 = new Guest("Juhász", "Bence", "magyar");
+
+			Booking booking = new Booking(testGuest1, testRoom, 1, LocalDate.of(2020, 02, 01), 3);
+			testAccommodation.addBooking(booking);
+
+			testAccommodation.deleteBooking(1);
+			assertEquals(0, testAccommodation.getBookings().size());
+		} catch (Exception e) {
+			System.out.println("Dobott kivételt: " + e.getMessage());
+		}
+		System.out.println("Sikeresen elszáll a program, ha a mai nap előttre foglalok.");
+		System.out.println();
+
+	}
+
 }

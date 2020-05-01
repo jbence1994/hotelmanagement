@@ -85,6 +85,10 @@ public final class Accommodation extends BaseAccommodation {
 	@Override
 	protected void validate(Booking booking) throws InvalidBookingException {
 
+		if (isArrivalDateIsBeforeToday(booking.getArrivalDate())) {
+			throw new InvalidBookingException("Az érkezési dátum nem lehet korábban, mint a mai dátum!");
+		}
+
 		if (isRoomReserved(booking.getRoom().getNumber(), booking.getArrivalDate())) {
 			throw new InvalidBookingException("A kiválasztott szoba sajnos foglalt!");
 		}
@@ -94,12 +98,12 @@ public final class Accommodation extends BaseAccommodation {
 		}
 	}
 
-	private boolean areThereEnoughCapacity(int roomCapacity, int numberOfGuests) {
-		if (numberOfGuests <= roomCapacity) {
-			return true;
-		}
+	private boolean isArrivalDateIsBeforeToday(LocalDate arrivalDate) {
+		return arrivalDate.isBefore(LocalDate.now());
+	}
 
-		return false;
+	private boolean areThereEnoughCapacity(int roomCapacity, int numberOfGuests) {
+		return numberOfGuests <= roomCapacity;
 	}
 
 	private boolean isRoomReserved(int roomNumber, LocalDate arrivalDate) {

@@ -15,6 +15,8 @@ public abstract class BaseAccommodation {
 
 	protected abstract void confirm(Booking booking);
 
+	public abstract List<Room> getRooms();
+
 	public void addBooking(Booking booking) throws InvalidBookingException {
 		validate(booking);
 		confirm(booking);

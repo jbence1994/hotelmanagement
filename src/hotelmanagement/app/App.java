@@ -14,7 +14,7 @@ public class App {
 
 	public static void main(String[] args) {
 		try {
-			testAccommodation = Accommodation.getAccommodation();
+			testAccommodation = new Accommodation();
 			input = new Scanner(System.in);
 
 			System.out.println("*******************************");

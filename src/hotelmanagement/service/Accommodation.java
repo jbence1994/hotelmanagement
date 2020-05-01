@@ -13,8 +13,6 @@ import hotelmanagement.model.Room;
 
 public final class Accommodation extends BaseAccommodation {
 
-	private static BaseAccommodation accommodation;
-
 	private String name;
 	private String zipCode;
 	private String city;
@@ -24,14 +22,16 @@ public final class Accommodation extends BaseAccommodation {
 	private List<Room> rooms;
 	private List<Booking> bookings;
 
-	private Accommodation(String name, String zipCode, String city, String address, String phone, String email)
-			throws Exception {
-		this.name = name;
-		this.zipCode = zipCode;
-		this.city = city;
-		this.address = address;
-		this.phone = phone;
-		this.email = email;
+	public Accommodation() throws Exception {
+		List<String> lines = Files.readAllLines(Paths.get("accommodation.txt"), StandardCharsets.UTF_8);
+
+		String[] data = lines.get(0).split(";");
+		this.name = data[0];
+		this.zipCode = data[1];
+		this.city = data[2];
+		this.address = data[3];
+		this.phone = data[4];
+		this.email = data[5];
 
 		try {
 			rooms = initializeRooms();
@@ -40,21 +40,6 @@ public final class Accommodation extends BaseAccommodation {
 		}
 
 		bookings = new ArrayList<>();
-	}
-
-	private static BaseAccommodation initializeAccommodation() throws Exception {
-
-		List<String> lines = Files.readAllLines(Paths.get("accommodation.txt"), StandardCharsets.UTF_8);
-
-		String[] data = lines.get(0).split(";");
-		String name = data[0];
-		String zipCode = data[1];
-		String city = data[2];
-		String address = data[3];
-		String phone = data[4];
-		String email = data[5];
-
-		return new Accommodation(name, zipCode, city, address, phone, email);
 	}
 
 	private List<Room> initializeRooms() throws IOException {
@@ -75,28 +60,26 @@ public final class Accommodation extends BaseAccommodation {
 		return rooms;
 	}
 
-	public static BaseAccommodation getAccommodation() throws Exception {
-
-		if (accommodation == null) {
-			accommodation = initializeAccommodation();
-			return accommodation;
-		}
-
-		return accommodation;
-	}
-
 	@Override
 	public String getName() {
 		return name;
 	}
 
 	@Override
-	protected void confirm(Booking booking) {
+	protected void splitBookingIntoDays(Booking booking) {
 		LocalDate arrivalDate = booking.getArrivalDate();
 
 		while (arrivalDate.isBefore(booking.getDepartureDate())) {
+
+			int id = booking.getId();
+			Guest guest = booking.getGuest();
+			Room room = booking.getRoom();
+			int numberOfGuests = booking.getNumberOfGuests();
+			int numberOfNights = booking.getNumberOfNights();
+			boolean paid = booking.isPaid();
 			booking.getRoom().setReserved(true);
-			bookings.add(booking);
+
+			bookings.add(new Booking(id, guest, room, numberOfGuests, arrivalDate, numberOfNights, paid));
 			arrivalDate = arrivalDate.plusDays(1);
 		}
 	}
@@ -130,7 +113,7 @@ public final class Accommodation extends BaseAccommodation {
 					&& booking.getRoom().isReserved()) {
 				return true;
 			}
-		} // TODO: nem jól működik ...
+		}
 
 		return false;
 	}
@@ -211,7 +194,6 @@ public final class Accommodation extends BaseAccommodation {
 	}
 
 	@Override
-
 	public List<Room> getRooms() {
 		return rooms;
 	}

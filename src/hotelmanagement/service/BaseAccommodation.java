@@ -13,18 +13,18 @@ public abstract class BaseAccommodation {
 
 	protected abstract void validate(Booking booking) throws InvalidBookingException;
 
-	protected abstract void confirm(Booking booking);
+	protected abstract void splitBookingIntoDays(Booking booking);
 
 	public abstract List<Room> getRooms();
 
 	public void addBooking(Booking booking) throws InvalidBookingException {
 		validate(booking);
-		confirm(booking);
+		splitBookingIntoDays(booking);
 	}
 
 	public void updateBooking(Booking booking) throws InvalidBookingException {
 		validate(booking);
-		confirm(booking);
+		splitBookingIntoDays(booking);
 	}
 
 	public abstract void deleteBooking(int id) throws Exception;

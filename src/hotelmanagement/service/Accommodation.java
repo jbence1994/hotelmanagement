@@ -93,16 +93,10 @@ public final class Accommodation extends BaseAccommodation {
 	@Override
 	protected void confirm(Booking booking) {
 
-		int id = getNextBookingId();
-		Guest guest = booking.getGuest();
-		Room room = booking.getRoom();
-		int numberOfGuests = booking.getNumberOfGuests();
 		LocalDate arrivalDate = booking.getArrivalDate();
-		boolean paid = false;
 
 		while (arrivalDate.isBefore(booking.getDepartureDate())) {
-			// Booking booking = new Booking(id, guest, room, numberOfGuests, arrivalDate,
-			// paid);
+
 			booking.getRoom().setReserved(true);
 
 			bookings.add(booking);
@@ -125,6 +119,7 @@ public final class Accommodation extends BaseAccommodation {
 			throw new InvalidBookingException("A vendégek száma meghaladja a szoba kapacitását!");
 		}
 	}
+	
 
 	private boolean areThereEnoughCapacity(int roomCapacity, int numberOfGuests) {
 		if (numberOfGuests <= roomCapacity) {
@@ -133,6 +128,7 @@ public final class Accommodation extends BaseAccommodation {
 
 		return false;
 	}
+	
 
 	private boolean isRoomReserved(int roomNumber, LocalDate arrivalDate) {
 		for (Booking booking : bookings) {
@@ -144,6 +140,7 @@ public final class Accommodation extends BaseAccommodation {
 
 		return false;
 	}
+	
 
 	private boolean hasFreeRooms(LocalDate arrivalDate) {
 		boolean hasFreeRooms = false;
@@ -154,10 +151,12 @@ public final class Accommodation extends BaseAccommodation {
 
 		return hasFreeRooms;
 	}
+	
 
 	private int getNumberOfBookings(LocalDate arrivalDate) {
 		return getBookingsByArrivalDate(arrivalDate).size();
 	}
+	
 
 	private List<Booking> getBookingsByArrivalDate(LocalDate arrivalDate) {
 		List<Booking> bookingsByArrivalDate = new ArrayList<Booking>();
@@ -170,10 +169,12 @@ public final class Accommodation extends BaseAccommodation {
 
 		return bookingsByArrivalDate;
 	}
+	
 
 	private int getNextBookingId() {
 		return getMaxBookingId() + 1;
 	}
+	
 
 	private int getMaxBookingId() {
 		int max = 0;
@@ -186,23 +187,41 @@ public final class Accommodation extends BaseAccommodation {
 
 		return max;
 	}
+	
 
 	@Override
 	public List<Booking> getBookings() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookings;
 	}
+	
 
 	@Override
-	public void deleteBooking(int id) {
-		// TODO Auto-generated method stub
+	public void deleteBooking(int id) throws Exception {
+		for (Booking booking : bookings) {
+			if (booking.getId() == id) {
+				bookings.remove(booking);
+				return;
+			}
+		}
+		throw new Exception("Nincs foglalás az alábbi azonosítóval: " + id);
 
 	}
+	
 
 	@Override
 	public String toString() {
 		return "A szálláshely neve: " + name + ", címe: " + zipCode + " " + city + " " + address + "."
 				+ "Elérhetőségek: " + phone + ", " + email;
+	}
+
+	@Override
+	public Booking getBookingById(int id) throws Exception {
+		for (Booking booking : bookings) {
+			if (booking.getId() == id) {
+				return booking;
+			}
+		}
+		throw new Exception("Nincs foglalás az alábbi azonosítóval: " + id);
 	}
 
 }

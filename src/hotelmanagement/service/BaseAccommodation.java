@@ -25,6 +25,8 @@ public abstract class BaseAccommodation {
 		confirm(booking);
 	}
 
-	public abstract void deleteBooking(int id);
+	public abstract void deleteBooking(int id) throws Exception;
+
+	public abstract Booking getBookingById(int id) throws Exception;
 
 }

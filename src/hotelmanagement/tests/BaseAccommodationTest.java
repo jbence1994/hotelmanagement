@@ -168,19 +168,47 @@ class BaseAccommodationTest {
 
 			BaseAccommodation testAccommodation = new Accommodation();
 
-			Room testRoom = testAccommodation.getRooms().get(0);
-
 			Guest testGuest1 = new Guest(1, "Juhász", "Bence", "ABC123", "magyar", "06702344280",
 					"juhasz.bence@teszt.hu");
 
-			Booking booking1 = new Booking(1, testGuest1, testRoom, 2, LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking1 = new Booking(1, testGuest1, testAccommodation.getRooms().get(0), 3,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking2 = new Booking(1, testGuest1, testAccommodation.getRooms().get(1), 3,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking3 = new Booking(1, testGuest1, testAccommodation.getRooms().get(2), 3,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking4 = new Booking(1, testGuest1, testAccommodation.getRooms().get(3), 2,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking5 = new Booking(1, testGuest1, testAccommodation.getRooms().get(4), 2,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking6 = new Booking(1, testGuest1, testAccommodation.getRooms().get(5), 2,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking7 = new Booking(1, testGuest1, testAccommodation.getRooms().get(6), 4,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking8 = new Booking(1, testGuest1, testAccommodation.getRooms().get(7), 4,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking9 = new Booking(1, testGuest1, testAccommodation.getRooms().get(8), 5,
+					LocalDate.of(2020, 05, 02), 3, false);
+			Booking booking10 = new Booking(1, testGuest1, testAccommodation.getRooms().get(9), 5,
+					LocalDate.of(2020, 05, 02), 3, false);
+
 			testAccommodation.addBooking(booking1);
-
-			Guest testGuest2 = new Guest(1, "Deim", "Máté", "XYZ789", "magyar", "06502913280", "deim.mate@teszt.hu");
-
-			Booking booking2 = new Booking(1, testGuest2, testRoom, 2, LocalDate.of(2020, 06, 02), 1, false);
 			testAccommodation.addBooking(booking2);
-			fail("TÖRÖLD KI HA KÉSZ A TESZTESET FEÁLLÍTÁSA");
+			testAccommodation.addBooking(booking3);
+			testAccommodation.addBooking(booking4);
+			testAccommodation.addBooking(booking5);
+			testAccommodation.addBooking(booking6);
+			testAccommodation.addBooking(booking7);
+			testAccommodation.addBooking(booking8);
+			testAccommodation.addBooking(booking9);
+			testAccommodation.addBooking(booking10);
+
+			Guest testGuest2 = new Guest(2, "Deim", "Máté", "XYZ789", "magyar", "06502913280", "deim.mate@teszt.hu");
+
+			Booking testGuest2Booking = new Booking(2, testGuest2, testAccommodation.getRooms().get(3), 2,
+					LocalDate.of(2020, 05, 02), 1, false);
+
+			testAccommodation.addBooking(testGuest2Booking);
 		} catch (Exception e) {
 			System.out.println("Dobott kivételt: " + e.getMessage());
 

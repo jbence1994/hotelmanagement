@@ -2,14 +2,11 @@ package hotelmanagement.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.util.*;
 import hotelmanagement.exceptions.InvalidBookingException;
-import hotelmanagement.model.Booking;
-import hotelmanagement.model.Guest;
-import hotelmanagement.model.Room;
+import hotelmanagement.model.*;
 
 public final class Accommodation extends BaseAccommodation {
 
